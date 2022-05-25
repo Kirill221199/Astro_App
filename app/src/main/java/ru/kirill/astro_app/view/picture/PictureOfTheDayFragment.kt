@@ -20,6 +20,7 @@ import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class PictureOfTheDayFragment : Fragment() {
@@ -27,12 +28,19 @@ class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
     private var isMain = true
+    lateinit var today:String
 
     private val customFormatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         DateTimeFormatter.ofPattern("uuuu-MM-d")
     } else {
         TODO("VERSION.SDK_INT < O")
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val yesterday = LocalDateTime.now().minusDays(1).format(customFormatter)!!
+    @RequiresApi(Build.VERSION_CODES.O)
+    val tdby = LocalDateTime.now().minusDays(2).format(customFormatter)!!
+
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
@@ -50,11 +58,10 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initActionBar()
-        initRequest()
+        initRequest("")
         initBehaviorBottomSheet()
         animationFloatActionBar()
         setChip()
-        Log.d("@@@", "${LocalDateTime.now().format(customFormatter)}")
     }
 
     private fun initActionBar() {
@@ -62,12 +69,13 @@ class PictureOfTheDayFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    private fun initRequest() {
+    private fun initRequest(date: String) {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer {
             renderData(it)
         })
-        viewModel.sendRequest()
+        viewModel.sendRequest(date)
     }
+
 
     private fun renderData(pictureOfTheDayAppState: PictureOfTheDayAppState) {
         when (pictureOfTheDayAppState) {
@@ -82,6 +90,8 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.lifeHack.title.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.title
                 binding.lifeHack.explanation.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.explanation
 
+                today = pictureOfTheDayAppState.pictureOfTheDayResponseData.date
+                Log.d("@@@", "$today")
             }
         }
     }
@@ -140,15 +150,22 @@ class PictureOfTheDayFragment : Fragment() {
 
     }
 
-    private fun setChip(){
-        binding.chipGroup.setOnCheckedChangeListener{group, position ->
-                when(position){
-                    1 -> {Log.d("@@@", "${position.toString()}") } //viewModel.sendRequestYT или sendRequest(data )
-                    2 -> {Log.d("@@@", "${position.toString()}")} //viewModel.sendRequestYT или sendRequest(data )
-                    3 -> {Log.d("@@@", "${position.toString()}")} //viewModel.sendRequestYT или sendRequest(data )
+    private fun setChip() {
+        binding.chipGroup.setOnCheckedChangeListener { group, position ->
+            when (position) {
+                1 -> {
+                    initRequest("")
                 }
+                2 -> {
+                    initRequest(yesterday)
+                    Log.d("@@@", "$yesterday")
+                }
+                3 -> {
+                    initRequest(tdby)
+                    Log.d("@@@", "$tdby")
+                }
+            }
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
