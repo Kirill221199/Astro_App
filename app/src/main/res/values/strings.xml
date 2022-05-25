@@ -5,4 +5,6 @@
     <string name="photo_of_the_day_stub">Photo of the day</string>
     <string name="bottom_sheet_title">Two Clusters and a Comet</string>
     <string name="bottom_sheet_explanation">This lovely starfield spans some four full moons.</string>
+    <string name="archive">Archive</string>
+    <string name="send">Send</string>
 </resources>
