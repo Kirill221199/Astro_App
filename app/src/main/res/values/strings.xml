@@ -7,4 +7,8 @@
     <string name="bottom_sheet_explanation">This lovely starfield spans some four full moons.</string>
     <string name="archive">Archive</string>
     <string name="send">Send</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tdby">TDBY</string>
+    <string name="about_picture">ABOUT PICTURE</string>
 </resources>

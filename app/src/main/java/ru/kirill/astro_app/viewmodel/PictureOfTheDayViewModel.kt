@@ -1,12 +1,11 @@
 package ru.kirill.astro_app.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.viewbinding.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.kirill.astro_app.BuildConfig.NASA_API_KEY
 import ru.kirill.astro_app.repository.PictureOfTheDayAPIRetrofit2Impl
 import ru.kirill.astro_app.repository.PictureOfTheDayResponseData
 
@@ -31,17 +30,34 @@ class PictureOfTheDayViewModel(
             call: Call<PictureOfTheDayResponseData>,
             response: Response<PictureOfTheDayResponseData>
         ) {
+            val responseCode = response.code()
+            Log.d("@@@", responseCode.toString())
             if (response.isSuccessful) {
                 response.body()?.let {
                     liveData.postValue(PictureOfTheDayAppState.Success(it))
                 }
             } else {
-                // доделать что-то на ошибку
+                val responseCode = response.code()
+                Log.d("@@@", responseCode.toString())
+                val codeErrorServer = 500
+                val codeErrorClient = 400..499
+
+                when {
+                    responseCode >= codeErrorServer -> {
+                        // server
+                        Log.d("@@@", "server error")
+                    }
+                    responseCode in codeErrorClient -> {
+                        // client
+                        Log.d("@@@", "client error")
+                    }
+                }
             }
+
         }
 
         override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
-            // доделать что-то на ошибку
+            liveData.postValue(PictureOfTheDayAppState.Error(Throwable()))
         }
     }
 }

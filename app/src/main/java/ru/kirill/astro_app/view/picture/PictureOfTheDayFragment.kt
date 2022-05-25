@@ -3,13 +3,16 @@ package ru.kirill.astro_app.view.picture
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.Chip
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
 import ru.kirill.astro_app.view.MainActivity
@@ -41,6 +44,7 @@ class PictureOfTheDayFragment : Fragment() {
         initRequest()
         initBehaviorBottomSheet()
         animationFloatActionBar()
+        setChip()
     }
 
     private fun initActionBar() {
@@ -60,8 +64,11 @@ class PictureOfTheDayFragment : Fragment() {
             is PictureOfTheDayAppState.Error -> {}
             is PictureOfTheDayAppState.Loading -> {}
             is PictureOfTheDayAppState.Success -> {
-                binding.imageView.load(pictureOfTheDayAppState.pictureOfTheDayResponseData.url)
-                // Убрать задержку загрузки картинки placeHolder
+                binding.imageView.load(pictureOfTheDayAppState.pictureOfTheDayResponseData.url){
+                    placeholder(R.drawable.space)
+                    error(R.drawable.ic_archive)
+                    transformations(CircleCropTransformation())
+                }
                 binding.lifeHack.title.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.title
                 binding.lifeHack.explanation.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.explanation
 
@@ -103,7 +110,6 @@ class PictureOfTheDayFragment : Fragment() {
                         R.drawable.ic_back_fab
                     )
                 )
-               // binding.bottomAppBar.replaceMenu(// какое-то меню)
             }
             else {
                 binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(
@@ -120,6 +126,22 @@ class PictureOfTheDayFragment : Fragment() {
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
             }
             isMain = !isMain
+        }
+
+    }
+
+    private fun setChip(){
+        binding.chipGroup.setOnCheckedChangeListener{group, position ->
+            group.findViewById<Chip>(position)?.let{
+                when(position){
+                    1 -> {Log.d("@@@", "${it.text}")
+                    Toast.makeText(requireContext(),"${it.text}", Toast.LENGTH_SHORT).show()
+                    } //viewModel.sendRequestYT или sendRequest(data )
+                    2 -> {Log.d("@@@", "${it.text}")} //viewModel.sendRequestYT или sendRequest(data )
+                    3 -> {Log.d("@@@", "${it.text}")} //viewModel.sendRequestYT или sendRequest(data )
+                }
+
+            }
         }
 
     }
