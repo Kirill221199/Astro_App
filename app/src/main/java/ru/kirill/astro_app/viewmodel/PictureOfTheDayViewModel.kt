@@ -8,6 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.kirill.astro_app.repository.PictureOfTheDayAPIRetrofit2Impl
 import ru.kirill.astro_app.repository.PictureOfTheDayResponseData
+import java.time.LocalDateTime
 
 class PictureOfTheDayViewModel(
     private val liveData: MutableLiveData<PictureOfTheDayAppState> = MutableLiveData(),
@@ -16,6 +17,13 @@ class PictureOfTheDayViewModel(
 
     fun getLiveData(): MutableLiveData<PictureOfTheDayAppState> {
         return liveData
+    }
+
+    fun sendRequest(date: String) {
+        liveData.postValue(PictureOfTheDayAppState.Loading(null))
+        // проверка на то есть ли BuildConfig.NASA_API_KEY
+        pictureOfTheDayRetrofit2Impl.getRetrofit().getPictureOfTheDayWithDate(ru.kirill.astro_app.BuildConfig.NASA_API_KEY, date)
+            .enqueue(callback)
     }
 
     fun sendRequest() {

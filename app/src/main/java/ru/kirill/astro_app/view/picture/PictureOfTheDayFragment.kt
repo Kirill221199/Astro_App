@@ -1,9 +1,10 @@
 package ru.kirill.astro_app.view.picture
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,12 +13,13 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.chip.Chip
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
 import ru.kirill.astro_app.view.MainActivity
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class PictureOfTheDayFragment : Fragment() {
@@ -25,6 +27,12 @@ class PictureOfTheDayFragment : Fragment() {
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
     private var isMain = true
+
+    private val customFormatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        DateTimeFormatter.ofPattern("uuuu-MM-d")
+    } else {
+        TODO("VERSION.SDK_INT < O")
+    }
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
@@ -38,6 +46,7 @@ class PictureOfTheDayFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initActionBar()
@@ -45,6 +54,7 @@ class PictureOfTheDayFragment : Fragment() {
         initBehaviorBottomSheet()
         animationFloatActionBar()
         setChip()
+        Log.d("@@@", "${LocalDateTime.now().format(customFormatter)}")
     }
 
     private fun initActionBar() {
@@ -132,16 +142,11 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun setChip(){
         binding.chipGroup.setOnCheckedChangeListener{group, position ->
-            group.findViewById<Chip>(position)?.let{
                 when(position){
-                    1 -> {Log.d("@@@", "${it.text}")
-                    Toast.makeText(requireContext(),"${it.text}", Toast.LENGTH_SHORT).show()
-                    } //viewModel.sendRequestYT или sendRequest(data )
-                    2 -> {Log.d("@@@", "${it.text}")} //viewModel.sendRequestYT или sendRequest(data )
-                    3 -> {Log.d("@@@", "${it.text}")} //viewModel.sendRequestYT или sendRequest(data )
+                    1 -> {Log.d("@@@", "${position.toString()}") } //viewModel.sendRequestYT или sendRequest(data )
+                    2 -> {Log.d("@@@", "${position.toString()}")} //viewModel.sendRequestYT или sendRequest(data )
+                    3 -> {Log.d("@@@", "${position.toString()}")} //viewModel.sendRequestYT или sendRequest(data )
                 }
-
-            }
         }
 
     }
