@@ -11,4 +11,7 @@
     <string name="yesterday">Yesterday</string>
     <string name="tdby">TDBY</string>
     <string name="about_picture">ABOUT PICTURE</string>
+    <string name="wikipedia">WIKIPEDIA</string>
+    <string name="hint_wiki">Search you\'re interested term in Wikipedia</string>
+    <string name="helper_wiki">search in wikipedia</string>
 </resources>

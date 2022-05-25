@@ -16,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
 import ru.kirill.astro_app.view.MainActivity
+import ru.kirill.astro_app.view.WikiSearchFragment
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
 import java.time.LocalDateTime
@@ -98,7 +99,6 @@ class PictureOfTheDayFragment : Fragment() {
 
     private fun initBehaviorBottomSheet(){
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.lifeHack.bottomSheetContainer)
-        //bottomSheetBehavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -182,6 +182,10 @@ class PictureOfTheDayFragment : Fragment() {
             R.id.app_bar_settings -> {
                 // что-то реализовать
                 Log.d("@@@", "settings")
+            }
+            R.id.app_bar_wiki -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, WikiSearchFragment.newInstance()).commit()
             }
             android.R.id.home -> {
                 BottomNavigationDrawerFragment.newInstance()
