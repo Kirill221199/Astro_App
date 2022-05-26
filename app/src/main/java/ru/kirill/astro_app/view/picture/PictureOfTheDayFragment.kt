@@ -38,9 +38,9 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    val yesterday = LocalDateTime.now().minusDays(1).format(customFormatter)!!
+    val yesterday = LocalDateTime.now().minusDays(2).format(customFormatter)!!
     @RequiresApi(Build.VERSION_CODES.O)
-    val tdby = LocalDateTime.now().minusDays(2).format(customFormatter)!!
+    val tdby = LocalDateTime.now().minusDays(3).format(customFormatter)!!
 
 
     private val viewModel: PictureOfTheDayViewModel by lazy {
@@ -185,7 +185,7 @@ class PictureOfTheDayFragment : Fragment() {
             }
             R.id.app_bar_wiki -> {
                 requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, WikiSearchFragment.newInstance()).commit()
+                        .replace(R.id.container, WikiSearchFragment.newInstance()).addToBackStack("").commit()
             }
             android.R.id.home -> {
                 BottomNavigationDrawerFragment.newInstance()
