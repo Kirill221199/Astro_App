@@ -90,7 +90,6 @@ class PictureOfTheDayFragment : Fragment() {
                 }
                 binding.lifeHack.title.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.title
                 binding.lifeHack.explanation.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.explanation
-
                 today = pictureOfTheDayAppState.pictureOfTheDayResponseData.date
                 Log.d("@@@", "$today")
             }
@@ -101,14 +100,15 @@ class PictureOfTheDayFragment : Fragment() {
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.lifeHack.bottomSheetContainer)
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
+            val color = 123456
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_DRAGGING -> {}
                     BottomSheetBehavior.STATE_COLLAPSED -> {}
-                    BottomSheetBehavior.STATE_EXPANDED -> {}
+                    BottomSheetBehavior.STATE_EXPANDED -> {binding.lifeHack.bottomSheetContainer.setBackgroundResource(R.drawable.space_background)}
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {}
                     BottomSheetBehavior.STATE_HIDDEN -> {}
-                    BottomSheetBehavior.STATE_SETTLING -> {}
+                    BottomSheetBehavior.STATE_SETTLING -> {binding.lifeHack.bottomSheetContainer.setBackgroundColor(R.color.transparent!!)}
                 }
             }
 
