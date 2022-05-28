@@ -37,8 +37,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription="@string/photo_of_the_day_stub" />
+        android:layout_gravity="center"/>
 
     <include android:id = "@+id/lifeHack" layout = "@layout/bottom_sheet_layout"/>
 

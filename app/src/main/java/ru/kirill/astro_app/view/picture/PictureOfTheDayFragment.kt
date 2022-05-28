@@ -16,12 +16,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
 import ru.kirill.astro_app.view.MainActivity
+import ru.kirill.astro_app.view.SettingsFragment
 import ru.kirill.astro_app.view.WikiSearchFragment
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class PictureOfTheDayFragment : Fragment() {
@@ -85,7 +85,7 @@ class PictureOfTheDayFragment : Fragment() {
             is PictureOfTheDayAppState.Success -> {
                 binding.imageView.load(pictureOfTheDayAppState.pictureOfTheDayResponseData.url){
                     placeholder(R.drawable.space)
-                    error(R.drawable.ic_archive)
+                    error(R.drawable.ic_baseline_error_outline_24)
                     transformations(CircleCropTransformation())
                 }
                 binding.lifeHack.title.text = pictureOfTheDayAppState.pictureOfTheDayResponseData.title
@@ -105,10 +105,14 @@ class PictureOfTheDayFragment : Fragment() {
                 when (newState) {
                     BottomSheetBehavior.STATE_DRAGGING -> {}
                     BottomSheetBehavior.STATE_COLLAPSED -> {}
-                    BottomSheetBehavior.STATE_EXPANDED -> {binding.lifeHack.bottomSheetContainer.setBackgroundResource(R.drawable.space_background)}
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        binding.chipGroup.visibility = View.GONE
+                    }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {}
                     BottomSheetBehavior.STATE_HIDDEN -> {}
-                    BottomSheetBehavior.STATE_SETTLING -> {binding.lifeHack.bottomSheetContainer.setBackgroundColor(R.color.transparent!!)}
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        binding.chipGroup.visibility = View.VISIBLE
+                    }
                 }
             }
 
@@ -180,8 +184,9 @@ class PictureOfTheDayFragment : Fragment() {
                 Log.d("@@@", "fav")
             }
             R.id.app_bar_settings -> {
-                // что-то реализовать
-                Log.d("@@@", "settings")
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, SettingsFragment.newInstance()).addToBackStack("")
+                    .commit()
             }
             R.id.app_bar_wiki -> {
                 requireActivity().supportFragmentManager.beginTransaction()
