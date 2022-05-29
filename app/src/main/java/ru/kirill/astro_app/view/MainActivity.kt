@@ -3,7 +3,7 @@ package ru.kirill.astro_app.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.kirill.astro_app.R
-import ru.kirill.astro_app.view.picture.PictureOfTheDayFragment
+import ru.kirill.astro_app.view.other_fragment.PictureOfTheDayFragment
 
 const val ThemeEarth = 0
 const val ThemeMoon = 1

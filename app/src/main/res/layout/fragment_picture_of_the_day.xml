@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_picture_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.picture.PictureOfTheDayFragment"
+    tools:context=".view.other_fragment.PictureOfTheDayFragment"
     android:background="@drawable/space_background">
 
     <TextView
-        android:id="@+id/tv_picture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -19,7 +17,6 @@
         android:textSize="25sp" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -44,12 +41,11 @@
     </com.google.android.material.tabs.TabLayout>
 
     <ru.kirill.astro_app.other.EquilateralImageView
-        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
-    <include android:id = "@+id/lifeHack" layout = "@layout/bottom_sheet_layout"/>
+    <include layout = "@layout/bottom_sheet_layout"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
@@ -61,7 +57,6 @@
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="?colorOnPrimary"

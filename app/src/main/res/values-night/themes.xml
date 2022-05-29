@@ -3,18 +3,24 @@
     <style name="Theme.Astro_App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/purple_200</item>
+        <item name="colorOnPrimary">@color/gray_dark</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/gray_dark</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorOnPrimary</item>
         <!-- Customize your theme here. -->
-        <item name="chipStyle">@style/MyChipStyle</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+        <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
+        <item name="fontFamily">?superFont</item>
     </style>
 
-    <style name="MyChipStyle" parent="Widget.MaterialComponents.Chip.Choice"/>
+    <style name="MyChipStyle" parent="Widget.MaterialComponents.Chip.Choice" />
+
+    <style name="MyStyleFloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">?colorPrimary</item>
+    </style>
 
 </resources>

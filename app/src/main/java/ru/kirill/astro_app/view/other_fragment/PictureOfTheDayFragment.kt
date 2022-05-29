@@ -1,4 +1,4 @@
-package ru.kirill.astro_app.view.picture
+package ru.kirill.astro_app.view.other_fragment
 
 import android.os.Build
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +24,6 @@ import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.math.roundToInt
 
 
 class PictureOfTheDayFragment : Fragment() {
@@ -138,11 +136,13 @@ class PictureOfTheDayFragment : Fragment() {
                     BottomSheetBehavior.STATE_COLLAPSED -> {}
                     BottomSheetBehavior.STATE_EXPANDED -> {
                         binding.tabLayoutMain.visibility = View.GONE
+                        binding.tvPicture.visibility = View.GONE
                     }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {}
                     BottomSheetBehavior.STATE_HIDDEN -> {}
                     BottomSheetBehavior.STATE_SETTLING -> {
                         binding.tabLayoutMain.visibility = View.VISIBLE
+                        binding.tvPicture.visibility = View.VISIBLE
                     }
                 }
             }

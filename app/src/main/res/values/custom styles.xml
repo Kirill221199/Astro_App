@@ -18,6 +18,7 @@
         <item name="android:textColor">@color/text_red</item>
         <item name="android:textStyle">italic</item>
         <item name="superFont">@font/black_ops_one</item>
+
     </style>
 
 
