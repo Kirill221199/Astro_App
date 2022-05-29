@@ -8,30 +8,40 @@
     tools:context=".view.picture.PictureOfTheDayFragment"
     android:background="@drawable/space_background">
 
-    <com.google.android.material.chip.ChipGroup
-        android:layout_marginTop="20dp"
-        android:id="@+id/chipGroup"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_picture"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:singleSelection="true">
+        android:background="@color/white"
+        android:backgroundTint="?colorPrimaryVariant"
+        android:gravity="center"
+        android:text="@string/choose_astroday"
+        android:textSize="25sp" />
 
-        <com.google.android.material.chip.Chip
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:tag="one"
             android:text="@string/today" />
 
-        <com.google.android.material.chip.Chip
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:tag="two"
             android:text="@string/yesterday" />
 
-        <com.google.android.material.chip.Chip
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?actionBarSize"
+            android:tag="three"
             android:text="@string/tdby" />
-    </com.google.android.material.chip.ChipGroup>
-
+    </com.google.android.material.tabs.TabLayout>
 
     <ru.kirill.astro_app.other.EquilateralImageView
         android:id="@+id/imageView"

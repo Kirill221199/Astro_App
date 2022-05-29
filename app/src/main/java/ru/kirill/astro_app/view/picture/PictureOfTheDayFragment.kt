@@ -4,8 +4,10 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +15,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.tabs.TabLayout
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
 import ru.kirill.astro_app.view.MainActivity
@@ -22,6 +25,7 @@ import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.math.roundToInt
 
 
 class PictureOfTheDayFragment : Fragment() {
@@ -58,11 +62,38 @@ class PictureOfTheDayFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setMargins(binding.tabLayoutMain, 0, binding.tvPicture.getWidthHeight().second, 0, 0)
         initActionBar()
         initRequest("")
         initBehaviorBottomSheet()
         animationFloatActionBar()
         setChip()
+    }
+
+    private fun setMargins(view: View, left: Int, top: Int, right: Int, bottom: Int) {
+        if (view.layoutParams is MarginLayoutParams) {
+            val p = view.layoutParams as MarginLayoutParams
+            p.setMargins(left, top, right, bottom)
+            view.requestLayout()
+        }
+    }
+
+    // Костыль чтобы узнать высоту элемента
+    fun View.getWidthHeight():Pair<Int,Int>{
+        measure(
+            // horizontal space requirements as imposed by the parent
+            0, // widthMeasureSpec
+
+            // vertical space requirements as imposed by the parent
+            0 // heightMeasureSpec
+        )
+        // the raw measured width of this view
+        val width = measuredWidth
+        // the raw measured height of this view
+        val height = measuredHeight
+
+        // return view's width and height in pixels
+        return Pair(width,height)
     }
 
     private fun initActionBar() {
@@ -106,12 +137,12 @@ class PictureOfTheDayFragment : Fragment() {
                     BottomSheetBehavior.STATE_DRAGGING -> {}
                     BottomSheetBehavior.STATE_COLLAPSED -> {}
                     BottomSheetBehavior.STATE_EXPANDED -> {
-                        binding.chipGroup.visibility = View.GONE
+                        binding.tabLayoutMain.visibility = View.GONE
                     }
                     BottomSheetBehavior.STATE_HALF_EXPANDED -> {}
                     BottomSheetBehavior.STATE_HIDDEN -> {}
                     BottomSheetBehavior.STATE_SETTLING -> {
-                        binding.chipGroup.visibility = View.VISIBLE
+                        binding.tabLayoutMain.visibility = View.VISIBLE
                     }
                 }
             }
@@ -155,21 +186,21 @@ class PictureOfTheDayFragment : Fragment() {
     }
 
     private fun setChip() {
-        binding.chipGroup.setOnCheckedChangeListener { group, position ->
-            when (position) {
-                1 -> {
-                    initRequest("")
-                }
-                2 -> {
-                    initRequest(yesterday)
-                    Log.d("@@@", "$yesterday")
-                }
-                3 -> {
-                    initRequest(tdby)
-                    Log.d("@@@", "$tdby")
+        binding.tabLayoutMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {initRequest("")}
+                    1 -> {initRequest(yesterday)}
+                    2 -> {initRequest(tdby)}
                 }
             }
-        }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                //что-то реализовать
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                //что-то реализовать
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

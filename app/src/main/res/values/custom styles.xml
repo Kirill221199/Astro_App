@@ -17,7 +17,7 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:textColor">@color/text_red</item>
         <item name="android:textStyle">italic</item>
-        <item name="superFont">@font/audiowide</item>
+        <item name="superFont">@font/black_ops_one</item>
     </style>
 
 
@@ -38,7 +38,7 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:textColor">@color/text_blue</item>
         <item name="android:textStyle">italic</item>
-        <item name="superFont">@font/convergence</item>
+        <item name="superFont">@font/trade_winds</item>
     </style>
 
 
@@ -59,7 +59,7 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:textColor">@color/text_green</item>
         <item name="android:textStyle">italic</item>
-        <item name="superFont">@font/righteous</item>
+        <item name="superFont">@font/audiowide</item>
     </style>
 
 </resources>

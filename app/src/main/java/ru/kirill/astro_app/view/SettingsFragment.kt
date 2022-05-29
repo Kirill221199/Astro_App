@@ -37,12 +37,9 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tab = binding.tabLayoutSettings.getTabAt(getPositionTheme())
-        tab?.select()
-        binding.imageView.load(R.drawable.earth) {
-            transformations(CircleCropTransformation())
-        }
+        setStartSet()
         initTab()
+        setDefaultTheme()
         setChooseTheme()
     }
 
@@ -62,11 +59,9 @@ class SettingsFragment : Fragment() {
                 }
                 setPositionTheme(tab!!.position)
             }
-
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 //что-то реализовать
             }
-
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 //что-то реализовать
             }
@@ -76,6 +71,13 @@ class SettingsFragment : Fragment() {
     private fun setChooseTheme() {
         binding.buttonSettingsChoose.setOnClickListener {
             parentActivity.setCurrentTheme(getPositionTheme())
+            parentActivity.recreate()
+        }
+    }
+
+    private fun setDefaultTheme() {
+        binding.buttonSettingsDefault.setOnClickListener {
+            parentActivity.setCurrentTheme(R.style.Theme_Astro_App)
             parentActivity.recreate()
         }
     }
@@ -92,6 +94,22 @@ class SettingsFragment : Fragment() {
         val sharedPreferences =
             requireActivity().getSharedPreferences(KEY_SP_SETTINGS, AppCompatActivity.MODE_PRIVATE)
         return sharedPreferences.getInt(KEY_THEME_SETTINGS, -1)
+    }
+
+    private fun setStartSet(){
+        val tab = binding.tabLayoutSettings.getTabAt(getPositionTheme())
+        tab?.select()
+        when(getPositionTheme()){
+            0 -> binding.imageView.load(R.drawable.earth) {
+                transformations(CircleCropTransformation())
+            }
+            1 -> binding.imageView.load(R.drawable.moon) {
+                transformations(CircleCropTransformation())
+            }
+            2 -> binding.imageView.load(R.drawable.mars) {
+                transformations(CircleCropTransformation())
+            }
+        }
     }
 
     companion object {
