@@ -17,4 +17,7 @@
     <string name="earth_theme">Earth theme</string>
     <string name="moon_theme">Moon theme</string>
     <string name="mars_theme">Mars Theme</string>
+    <string name="choose_app_theme">Choose app theme</string>
+    <string name="set_standard_theme">Set standard theme</string>
+    <string name="set_selected_theme">Set selected theme</string>
 </resources>

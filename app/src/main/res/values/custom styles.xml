@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Mars" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Mars" parent="Theme.Astro_App">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryVariant">@color/red_dark</item>
@@ -17,11 +17,12 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:textColor">@color/text_red</item>
         <item name="android:textStyle">italic</item>
+        <item name="superFont">@font/audiowide</item>
     </style>
 
 
 
-    <style name="Moon" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Moon" parent="Theme.Astro_App">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/blue_dark</item>
@@ -37,11 +38,12 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:textColor">@color/text_blue</item>
         <item name="android:textStyle">italic</item>
+        <item name="superFont">@font/convergence</item>
     </style>
 
 
 
-    <style name="Earth" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Earth" parent="Theme.Astro_App">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryVariant">@color/green_dark</item>
@@ -57,6 +59,7 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:textColor">@color/text_green</item>
         <item name="android:textStyle">italic</item>
+        <item name="superFont">@font/righteous</item>
     </style>
 
 </resources>

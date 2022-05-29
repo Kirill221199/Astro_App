@@ -14,15 +14,19 @@
         <!-- Customize your theme here. -->
         <item name="chipStyle">@style/MyChipStyle</item>
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
+        <item name="android:navigationBarColor">?colorPrimaryVariant</item>
+        <item name="fontFamily">?superFont</item>
     </style>
 
     <style name="MyChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textColor">?colorPrimary</item>
+        <item name="fontFamily">?superFont</item>
     </style>
 
     <style name="MyStyleFloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="tint">?colorPrimaryVariant</item>
+        <item name="fontFamily">?superFont</item>
     </style>
 
-
 </resources>
+
