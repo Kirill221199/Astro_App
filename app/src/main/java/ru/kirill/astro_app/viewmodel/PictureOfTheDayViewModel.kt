@@ -26,13 +26,6 @@ class PictureOfTheDayViewModel(
             .enqueue(callback)
     }
 
-    fun sendRequest() {
-        liveData.postValue(PictureOfTheDayAppState.Loading(null))
-        // проверка на то есть ли BuildConfig.NASA_API_KEY
-        pictureOfTheDayRetrofit2Impl.getRetrofit().getPictureOfTheDay(ru.kirill.astro_app.BuildConfig.NASA_API_KEY)
-            .enqueue(callback)
-    }
-
     private val callback = object : Callback<PictureOfTheDayResponseData> {
         override fun onResponse(
             call: Call<PictureOfTheDayResponseData>,

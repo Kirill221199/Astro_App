@@ -1,4 +1,4 @@
-package ru.kirill.astro_app.view
+package ru.kirill.astro_app.view.other_fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import coil.decode.GifDecoder
-import coil.load
 import com.bumptech.glide.Glide
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentWikiSearchBinding

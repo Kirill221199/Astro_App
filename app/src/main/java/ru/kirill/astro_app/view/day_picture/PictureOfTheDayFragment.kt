@@ -1,4 +1,4 @@
-package ru.kirill.astro_app.view.other_fragment
+package ru.kirill.astro_app.view.day_picture
 
 import android.os.Build
 import android.os.Bundle
@@ -6,20 +6,15 @@ import android.util.Log
 import android.view.*
 import android.view.ViewGroup.MarginLayoutParams
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
-import ru.kirill.astro_app.view.MainActivity
-import ru.kirill.astro_app.view.SettingsFragment
-import ru.kirill.astro_app.view.WikiSearchFragment
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
 import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
 import java.time.LocalDateTime
@@ -61,10 +56,8 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setMargins(binding.tabLayoutMain, 0, binding.tvPicture.getWidthHeight().second, 0, 0)
-        initActionBar()
         initRequest("")
         initBehaviorBottomSheet()
-        animationFloatActionBar()
         setChip()
     }
 
@@ -92,11 +85,6 @@ class PictureOfTheDayFragment : Fragment() {
 
         // return view's width and height in pixels
         return Pair(width,height)
-    }
-
-    private fun initActionBar() {
-        (requireActivity() as MainActivity).setSupportActionBar(binding.bottomAppBar)
-        setHasOptionsMenu(true)
     }
 
     private fun initRequest(date: String) {
@@ -154,37 +142,6 @@ class PictureOfTheDayFragment : Fragment() {
         })
     }
 
-    private fun animationFloatActionBar() {
-        binding.fab.setOnClickListener {
-            if (isMain) {
-                binding.bottomAppBar.navigationIcon = null
-                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                binding.fab.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.ic_back_fab
-                    )
-                )
-            }
-            else {
-                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_hamburger_menu_bottom_bar
-                )
-                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                binding.fab.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        requireContext(),
-                        R.drawable.ic_plus_fab
-                    )
-                )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
-            }
-            isMain = !isMain
-        }
-
-    }
-
     private fun setChip() {
         binding.tabLayoutMain.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -201,35 +158,6 @@ class PictureOfTheDayFragment : Fragment() {
                 //что-то реализовать
             }
         })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.app_bar_fav -> {
-                // что-то реализовать
-                Log.d("@@@", "fav")
-            }
-            R.id.app_bar_settings -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, SettingsFragment.newInstance()).addToBackStack("")
-                    .commit()
-            }
-            R.id.app_bar_wiki -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, WikiSearchFragment.newInstance()).addToBackStack("").commit()
-            }
-            android.R.id.home -> {
-                BottomNavigationDrawerFragment.newInstance()
-                    .show(requireActivity().supportFragmentManager, "")
-                // Нужно сделать скрытие по нажатию на элемент
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     companion object {

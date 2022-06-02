@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group android:checkableBehavior="none">
-        <item
-            android:id="@+id/navigation_one"
-            android:icon="@drawable/ic_archive"
-            android:title="@string/archive" />
-        <item
-            android:id="@+id/navigation_two"
-            android:icon="@drawable/ic_send"
-            android:title="@string/send" />
-    </group>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_bottom_photo_day"
+        android:icon="@drawable/ic_telescope"
+        android:title="@string/astro" />
+
+    <item
+        android:id="@+id/action_bottom_photo_earth"
+        android:icon="@drawable/ic_planet_earth"
+        android:title="@string/earth"/>
+
+    <item
+        android:id="@+id/action_bottom_mars_rover_photo"
+        android:icon="@drawable/ic_planet_mars"
+        android:title="@string/mars"/>
 
 </menu>

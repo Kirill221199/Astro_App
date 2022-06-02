@@ -3,7 +3,6 @@ package ru.kirill.astro_app.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ru.kirill.astro_app.R
-import ru.kirill.astro_app.view.other_fragment.PictureOfTheDayFragment
 
 const val ThemeEarth = 0
 const val ThemeMoon = 1
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, PictureOfTheDayFragment.newInstance()).commit()
+                .replace(R.id.container, MainFragment.newInstance()).commit()
         }
     }
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    fun getCurrentTheme(): Int {
+    private fun getCurrentTheme(): Int {
         val sharedPreferences = getSharedPreferences(KEY_SP, MODE_PRIVATE)
         return sharedPreferences.getInt(KEY_THEME, -1)
     }

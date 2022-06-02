@@ -1,4 +1,4 @@
-package ru.kirill.astro_app.view
+package ru.kirill.astro_app.view.other_fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -12,6 +12,7 @@ import coil.transform.CircleCropTransformation
 import com.google.android.material.tabs.TabLayout
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentSettingsBinding
+import ru.kirill.astro_app.view.MainActivity
 
 
 class SettingsFragment : Fragment() {
@@ -93,7 +94,7 @@ class SettingsFragment : Fragment() {
     private fun getPositionTheme(): Int {
         val sharedPreferences =
             requireActivity().getSharedPreferences(KEY_SP_SETTINGS, AppCompatActivity.MODE_PRIVATE)
-        return sharedPreferences.getInt(KEY_THEME_SETTINGS, -1)
+        return sharedPreferences.getInt(KEY_THEME_SETTINGS, 0)
     }
 
     private fun setStartSet(){

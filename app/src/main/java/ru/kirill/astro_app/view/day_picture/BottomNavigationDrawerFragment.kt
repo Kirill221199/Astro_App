@@ -1,4 +1,4 @@
-package ru.kirill.astro_app.view.other_fragment
+package ru.kirill.astro_app.view.day_picture
 
 import android.os.Bundle
 import android.util.Log
