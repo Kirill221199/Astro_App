@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_picture_container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.day_picture.PictureOfTheDayFragment"
+    android:background="@drawable/space_background">
+
+    <ru.kirill.astro_app.other.EquilateralImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <include android:id = "@+id/lifeHack" layout = "@layout/bottom_sheet_layout"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
