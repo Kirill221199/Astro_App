@@ -1,15 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.mars_picture.MarsPictureFragment">
+    android:background="@drawable/space_background"
+    android:orientation="vertical"
+    tools:context=".view.earth_picture.EarthPictureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="MARS PICTURE"
-        android:gravity="center|center_horizontal"/>
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:backgroundTint="?colorPrimaryVariant"
+        android:gravity="center"
+        android:text="Photo from Mars"
+        android:textSize="25sp" />
 
-</FrameLayout>
+    <ru.kirill.astro_app.other.EquilateralImageView
+        android:id="@+id/imageViewMars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/curiosity_rover" />
+
+
+    <Spinner
+        android:id="@+id/spinner_rover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:backgroundTint="?colorPrimaryVariant" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/transparent" />
+
+    <Spinner
+        android:id="@+id/spinner_cameras"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:backgroundTint="?colorPrimaryVariant" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/transparent" />
+
+    <include
+        android:id="@+id/dateHack"
+        layout="@layout/date_mars" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/transparent_full" />
+
+    <Button
+        android:id="@+id/search_picture"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?android:textColor"
+        android:gravity="center"
+        android:hint="@string/search"
+        android:textColor="?colorPrimaryVariant"
+        android:textColorHint="?colorPrimaryVariant"
+        android:textSize="30sp" />
+
+</LinearLayout>

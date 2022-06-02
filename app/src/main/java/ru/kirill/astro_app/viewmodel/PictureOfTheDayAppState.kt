@@ -1,6 +1,6 @@
 package ru.kirill.astro_app.viewmodel
 
-import ru.kirill.astro_app.repository.PictureOfTheDayResponseData
+import ru.kirill.astro_app.repository.PictureOfTheDay.PictureOfTheDayResponseData
 
 sealed class PictureOfTheDayAppState{
     data class Success(val pictureOfTheDayResponseData: PictureOfTheDayResponseData):PictureOfTheDayAppState()

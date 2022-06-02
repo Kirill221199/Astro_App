@@ -10,6 +10,7 @@
     <color name="gray">#C0C0C0</color>
     <color name="gray_dark">#232323</color>
     <color name="transparent">#66000000</color>
+    <color name="transparent_full">#00000000</color>
 
 
     <color name="red">#83120A</color>

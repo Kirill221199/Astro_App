@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.kirill.astro_app.repository.PictureOfTheDayAPIRetrofit2Impl
-import ru.kirill.astro_app.repository.PictureOfTheDayResponseData
-import java.time.LocalDateTime
+import ru.kirill.astro_app.repository.PictureOfTheDay.PictureOfTheDayAPIRetrofit2Impl
+import ru.kirill.astro_app.repository.PictureOfTheDay.PictureOfTheDayResponseData
 
 class PictureOfTheDayViewModel(
     private val liveData: MutableLiveData<PictureOfTheDayAppState> = MutableLiveData(),

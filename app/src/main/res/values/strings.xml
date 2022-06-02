@@ -26,4 +26,26 @@
     <string name="astro">Astro</string>
     <string name="earth">Earth</string>
     <string name="mars">Mars</string>
+    <string name="search_photo">Search</string>
+    <string name="search">Search</string>
+
+
+    <string-array name="RoverNames">
+        <item>Curiosity</item>
+        <item>Opportunity</item>
+        <item>Spirit</item>
+    </string-array>
+
+    <string-array name="CamerasNames">
+        <item>FHAZ</item>
+        <item>RHAZ</item>
+        <item>MAST</item>
+        <item>CHEMCAM</item>
+        <item>MAHLI</item>
+        <item>MARDI</item>
+        <item>NAVCAM</item>
+        <item>PANCAM</item>
+        <item>MINITES</item>
+    </string-array>
+
 </resources>

@@ -42,6 +42,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <ru.kirill.astro_app.other.EquilateralImageView
+        android:layout_marginTop="50dp"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
