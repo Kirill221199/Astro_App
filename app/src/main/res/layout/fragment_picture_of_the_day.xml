@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_picture_container"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.day_picture.PictureOfTheDayFragment"
-    android:background="@drawable/space_background">
+    android:background="@drawable/space_background"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_picture"
@@ -43,14 +43,10 @@
             android:text="@string/tdby" />
     </com.google.android.material.tabs.TabLayout>
 
-    <ru.kirill.astro_app.other.EquilateralImageView
-        android:id="@+id/imageView"
+    <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
-
-    <include android:id = "@+id/lifeHack" layout = "@layout/bottom_sheet_layout"/>
+        android:id="@+id/view_pager_picture_of_the_day" />
 
 
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
