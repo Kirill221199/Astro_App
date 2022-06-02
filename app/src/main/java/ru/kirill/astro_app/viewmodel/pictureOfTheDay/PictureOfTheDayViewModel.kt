@@ -1,4 +1,4 @@
-package ru.kirill.astro_app.viewmodel
+package ru.kirill.astro_app.viewmodel.pictureOfTheDay
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

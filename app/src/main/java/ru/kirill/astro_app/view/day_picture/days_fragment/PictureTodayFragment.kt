@@ -13,8 +13,8 @@ import coil.transform.CircleCropTransformation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureTodayBinding
-import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
-import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
+import ru.kirill.astro_app.viewmodel.pictureOfTheDay.PictureOfTheDayAppState
+import ru.kirill.astro_app.viewmodel.pictureOfTheDay.PictureOfTheDayViewModel
 
 class PictureTodayFragment : Fragment() {
 

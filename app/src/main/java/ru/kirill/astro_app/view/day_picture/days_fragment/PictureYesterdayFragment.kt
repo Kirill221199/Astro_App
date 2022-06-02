@@ -15,8 +15,8 @@ import coil.transform.CircleCropTransformation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureYesterdayBinding
-import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
-import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
+import ru.kirill.astro_app.viewmodel.pictureOfTheDay.PictureOfTheDayAppState
+import ru.kirill.astro_app.viewmodel.pictureOfTheDay.PictureOfTheDayViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

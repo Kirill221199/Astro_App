@@ -1,25 +1,11 @@
 package ru.kirill.astro_app.view.day_picture
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.view.ViewGroup.MarginLayoutParams
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import coil.load
-import coil.transform.CircleCropTransformation
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentPictureOfTheDayBinding
-import ru.kirill.astro_app.viewmodel.PictureOfTheDayAppState
-import ru.kirill.astro_app.viewmodel.PictureOfTheDayViewModel
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 class PictureOfTheDayFragment : Fragment() {
