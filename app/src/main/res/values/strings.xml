@@ -28,6 +28,9 @@
     <string name="mars">Mars</string>
     <string name="search_photo">Search</string>
     <string name="search">Search</string>
+    <string name="date_dialog_hint">DATE</string>
+    <string name="confirm_date_dialog">Сonfirm</string>
+    <string name="cancel_date_dialog">Сancel</string>
 
 
     <string-array name="RoverNames">

@@ -2,19 +2,18 @@ package ru.kirill.astro_app.view.mars_picture
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.view.Window
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import coil.load
 import coil.transform.CircleCropTransformation
 import ru.kirill.astro_app.R
@@ -138,29 +137,24 @@ class MarsPictureFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapterRover()
         initAdapterCameras()
-        choiceDate()
+        choiceDateCalendar()
         choiceRover()
         choiceCamera()
-        searchPicture(getRover(),getCamera())
+        searchPictureToCalendar(getRover(), getCamera())
+        choiceDateText()
     }
 
-    private fun searchPicture(rover: String, camera: String) {
+    private fun searchPictureToCalendar(rover: String, camera: String) {
         binding.searchPicture.setOnClickListener {
-            if(binding.dateHack.dateMars.text.toString() != ""){
+            if (binding.dateHack.dateMars.text.toString() != "") {
                 when (rover) {
                     roverName[0] -> {
-                        val tv = binding.dateHack.dateMars.text.toString()
-                        Log.d("@@@", "$tv + $camera")
                         initRequestCuriosity(binding.dateHack.dateMars.text.toString(), camera)
                     }
                     roverName[1] -> {
-                        val tv = binding.dateHack.dateMars.text.toString()
-                        Log.d("@@@", "$tv + $camera")
                         initRequestOpportunity(binding.dateHack.dateMars.text.toString(), camera)
                     }
                     roverName[2] -> {
-                        val tv = binding.dateHack.dateMars.text.toString()
-                        Log.d("@@@", "$tv + $camera")
                         initRequestSpirit(binding.dateHack.dateMars.toString(), camera)
                     }
                 }
@@ -170,6 +164,7 @@ class MarsPictureFragment : Fragment() {
             }
         }
     }
+
 
     private fun initRequestCuriosity(date: String, camera: String) {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer {
@@ -272,7 +267,7 @@ class MarsPictureFragment : Fragment() {
     }
     //endregion
 
-    private fun choiceDate() {
+    private fun choiceDateCalendar() {
         binding.dateHack.dateMars.text = getDate()
         binding.dateHack.dateMars.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -291,6 +286,32 @@ class MarsPictureFragment : Fragment() {
             )
             datePicker.show()
         }
+    }
+
+    private fun choiceDateText() {
+        binding.dateHack.dateMars.setOnLongClickListener {
+            showDialog()
+            return@setOnLongClickListener true
+        }
+    }
+
+    private fun showDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.date_dialog)
+        val body = dialog.findViewById(R.id.body) as EditText
+        val yesBtn = dialog.findViewById(R.id.yesBtn) as Button
+        val noBtn = dialog.findViewById(R.id.noBtn) as Button
+        yesBtn.setOnClickListener {
+            val date = body.text.toString()
+            binding.dateHack.dateMars.text = date
+            setDate(date)
+            dialog.dismiss()
+        }
+        noBtn.setOnClickListener { dialog.dismiss() }
+        dialog.show()
+
     }
 
     companion object {
