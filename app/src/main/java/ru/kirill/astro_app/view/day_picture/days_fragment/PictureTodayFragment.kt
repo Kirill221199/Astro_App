@@ -56,7 +56,7 @@ class PictureTodayFragment : Fragment() {
     private fun renderData(pictureOfTheDayAppState: PictureOfTheDayAppState) {
         when (pictureOfTheDayAppState) {
             is PictureOfTheDayAppState.Error -> {
-                Toast.makeText(requireContext(), pictureOfTheDayAppState.error.toString(), Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), pictureOfTheDayAppState.error.toString(), Toast.LENGTH_SHORT).show()
             }
             is PictureOfTheDayAppState.Loading -> {}
             is PictureOfTheDayAppState.Success -> {
