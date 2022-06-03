@@ -32,7 +32,14 @@
     <string name="confirm_date_dialog">Сonfirm</string>
     <string name="cancel_date_dialog">Сancel</string>
     <string name="photo_from_mars">Photo from Mars</string>
-
+    <string name="help_text">В данном разделе Вы можете посмотреть фотографии которые сделали марсоходы за время своих миссий:</string>
+    <string name="help_curiosity">Curiosity – выполняет свой долг по сей день и отправляет фотографии на землю</string>
+    <string name="help_opportunity">Opportunity – 12 июня 2018 года перестал выходить на связь из-за мощной пылевой бури</string>
+    <string name="help_spirit">Spirit – в мае 2009 года застрял в песчаной дюне, вследствие чего 22 марта 2010 года потерял связь с Землёй </string>
+    <string name="help_instruction">Здесь вы можете посмотреть фото с марсохода, для этого нкжно выбрать модель марсохода, его камеру с которой были сделаны фото, а также земную дату, когда пришли фото, после чего нажать search.</string>
+    <string name="help_warning">Если отобразилось фото марса – значит в этот день или с этой камеры не было сделано фото.</string>
+    <string name="help_link">Для того чтобы посмотреть какие камеры стоят на каком марсоходе перейдите по ссылке -> Browse APIs -> Mars Rover Photos ->Rover Cameras </string>
+    <string name="scroll">↓ SCROLL ↓</string>
 
     <string-array name="RoverNames">
         <item>Curiosity</item>

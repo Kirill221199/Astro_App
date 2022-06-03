@@ -2,4 +2,5 @@
 <resources>
     <dimen name="margin_settings_button">3dp</dimen>
     <dimen name="date_dialog_margin">5dp</dimen>
+    <dimen name="margin_help">8dp</dimen>
 </resources>

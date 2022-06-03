@@ -1,19 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/space_background"
-    android:orientation="vertical"
+    android:background="?colorPrimaryVariant"
     tools:context=".view.earth_picture.EarthPictureFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HEIP"
-        android:textSize="20sp"
-        android:textColor="?android:textColor"
-        android:gravity="center|top"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="center|top"
+            android:text="@string/scroll"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_text"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_curiosity"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_opportunity"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_spirit"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_instruction"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_warning"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_help"
+            android:layout_marginBottom="@dimen/margin_help"
+            android:gravity="start|top"
+            android:text="@string/help_link"
+            android:textColor="?android:textColor"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="ССЫЛКА"
+            android:textColor="?android:textColor"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+</ScrollView>
