@@ -49,31 +49,31 @@ class MainFragment : Fragment() {
             when (item.itemId) {
                 R.id.action_bottom_photo_day -> {
                     parentFragmentManager.beginTransaction()
-                        .replace(R.id.container_to_fragment, PictureOfTheDayFragment.newInstance())
+                        .replace(R.id.container_to_fragment, PictureOfTheDayFragment.newInstance()).addToBackStack("")
                         .commit()
                     setCurrentItem(R.id.action_bottom_photo_day)
                 }
                 R.id.action_bottom_photo_earth -> {
                     parentFragmentManager.beginTransaction()
-                        .replace(R.id.container_to_fragment, EarthPictureFragment.newInstance())
+                        .replace(R.id.container_to_fragment, EarthPictureFragment.newInstance()).addToBackStack("")
                         .commit()
                     setCurrentItem(R.id.action_bottom_photo_earth)
                 }
                 R.id.action_bottom_mars_rover_photo -> {
                     parentFragmentManager.beginTransaction()
-                        .replace(R.id.container_to_fragment, MarsPictureFragment.newInstance())
+                        .replace(R.id.container_to_fragment, MarsPictureFragment.newInstance()).addToBackStack("")
                         .commit()
                     setCurrentItem(R.id.action_bottom_mars_rover_photo)
                 }
                 R.id.action_bar_wiki -> {
                     parentFragmentManager.beginTransaction()
-                        .replace(R.id.container_to_fragment, WikiSearchFragment.newInstance())
+                        .replace(R.id.container_to_fragment, WikiSearchFragment.newInstance()).addToBackStack("")
                         .commit()
                     setCurrentItem(R.id.action_bar_wiki)
                 }
                 R.id.action_bar_settings -> {
                     parentFragmentManager.beginTransaction()
-                        .replace(R.id.container_to_fragment, SettingsFragment.newInstance())
+                        .replace(R.id.container_to_fragment, SettingsFragment.newInstance()).addToBackStack("")
                         .commit()
                     setCurrentItem(R.id.action_bar_settings)
                 }

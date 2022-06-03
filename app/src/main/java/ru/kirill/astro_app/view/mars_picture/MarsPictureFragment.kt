@@ -18,6 +18,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentMarsPictureBinding
+import ru.kirill.astro_app.view.day_picture.PictureOfTheDayFragment
 import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureAppState
 import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureViewModel
 import java.util.*
@@ -142,6 +143,15 @@ class MarsPictureFragment : Fragment() {
         choiceCamera()
         searchPictureToCalendar(getRover(), getCamera())
         choiceDateText()
+        help()
+    }
+
+    private fun help(){
+        binding.help.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, HelpFragment.newInstance()).addToBackStack("")
+                .commit()
+        }
     }
 
     private fun searchPictureToCalendar(rover: String, camera: String) {

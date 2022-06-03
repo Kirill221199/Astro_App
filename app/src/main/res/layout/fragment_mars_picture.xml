@@ -7,14 +7,37 @@
     android:orientation="vertical"
     tools:context=".view.earth_picture.EarthPictureFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:backgroundTint="?colorPrimaryVariant"
-        android:gravity="center"
-        android:text="Photo from Mars"
-        android:textSize="25sp" />
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_picture_mars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/photo_from_mars"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/help"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="3dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_help" />
+
+    </LinearLayout>
+
 
     <ru.kirill.astro_app.other.EquilateralImageView
         android:id="@+id/imageViewMars"
