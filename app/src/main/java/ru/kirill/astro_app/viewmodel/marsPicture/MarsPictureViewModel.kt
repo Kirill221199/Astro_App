@@ -54,6 +54,7 @@ class MarsPictureViewModel(
                 }
             } else {
                 val responseCode = response.code()
+                val responseMessage = response.message()
                 Log.d("@@@", responseCode.toString())
                 val codeErrorServer = 500
                 val codeErrorClient = 400..499
@@ -62,10 +63,12 @@ class MarsPictureViewModel(
                     responseCode >= codeErrorServer -> {
                         // server
                         Log.d("@@@", "server error")
+                        liveData.postValue(MarsPictureAppState.Error(Throwable(responseMessage)))
                     }
                     responseCode in codeErrorClient -> {
                         // client
                         Log.d("@@@", "client error")
+                        liveData.postValue(MarsPictureAppState.Error(Throwable(responseMessage)))
                     }
                 }
             }

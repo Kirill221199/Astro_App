@@ -8,6 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import ru.kirill.astro_app.repository.PictureOfTheDay.PictureOfTheDayAPIRetrofit2Impl
 import ru.kirill.astro_app.repository.PictureOfTheDay.PictureOfTheDayResponseData
+import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureAppState
 
 class PictureOfTheDayViewModel(
     private val liveData: MutableLiveData<PictureOfTheDayAppState> = MutableLiveData(),
@@ -38,6 +39,7 @@ class PictureOfTheDayViewModel(
                 }
             } else {
                 val responseCode = response.code()
+                val responseMessage = response.message()
                 Log.d("@@@", responseCode.toString())
                 val codeErrorServer = 500
                 val codeErrorClient = 400..499
@@ -46,10 +48,12 @@ class PictureOfTheDayViewModel(
                     responseCode >= codeErrorServer -> {
                         // server
                         Log.d("@@@", "server error")
+                        liveData.postValue(PictureOfTheDayAppState.Error(Throwable(responseMessage)))
                     }
                     responseCode in codeErrorClient -> {
                         // client
                         Log.d("@@@", "client error")
+                        liveData.postValue(PictureOfTheDayAppState.Error(Throwable(responseMessage)))
                     }
                 }
             }

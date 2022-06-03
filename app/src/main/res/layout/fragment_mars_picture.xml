@@ -21,8 +21,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/curiosity_rover" />
+        android:src="@drawable/mars_rover_default" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/transparent" />
 
     <Spinner
         android:id="@+id/spinner_rover"
