@@ -15,10 +15,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import coil.network.HttpException
 import coil.transform.CircleCropTransformation
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentMarsPictureBinding
-import ru.kirill.astro_app.view.day_picture.PictureOfTheDayFragment
 import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureAppState
 import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureViewModel
 import java.util.*
@@ -141,7 +141,8 @@ class MarsPictureFragment : Fragment() {
         choiceDateCalendar()
         choiceRover()
         choiceCamera()
-        searchPictureToCalendar(getRover(), getCamera())
+        searchPictureToCalendar()
+        Log.d("@@@", "${getRover()} ${getCamera()}")
         choiceDateText()
         help()
     }
@@ -154,8 +155,10 @@ class MarsPictureFragment : Fragment() {
         }
     }
 
-    private fun searchPictureToCalendar(rover: String, camera: String) {
+    private fun searchPictureToCalendar() {
         binding.searchPicture.setOnClickListener {
+            val rover = getRover()
+            val camera = getCamera()
             if (binding.dateHack.dateMars.text.toString() != "") {
                 when (rover) {
                     roverName[0] -> {
@@ -168,8 +171,7 @@ class MarsPictureFragment : Fragment() {
                         initRequestSpirit(binding.dateHack.dateMars.toString(), camera)
                     }
                 }
-            }
-            else{
+            } else{
                 Toast.makeText(requireContext(),"SELECT DATE TO SEARCH", Toast.LENGTH_SHORT).show()
             }
         }
@@ -212,12 +214,17 @@ class MarsPictureFragment : Fragment() {
                 if (marsPictureAppState.marsPictureResponseData.photos.isNotEmpty()) {
 
                     val picture = marsPictureAppState.marsPictureResponseData.photos.last().imgSrc
-                    Log.d("@@@", "$picture")
-
-                    binding.imageViewMars.load(uri = picture) {
+                    binding.imageViewMars.load(picture){
                         placeholder(R.drawable.space)
                         error(R.drawable.ic_baseline_error_outline_24)
+                        listener(
+                            onError = { request, ex ->
+                                if ((ex as HttpException).response.code() == 400) {
+                                    Log.d("", "")
+                                }
+                            })
                     }
+
                 } else {
                     binding.imageViewMars.load(R.drawable.mars) {
                         transformations(CircleCropTransformation())
