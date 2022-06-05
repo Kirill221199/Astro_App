@@ -24,6 +24,8 @@ import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentMarsPictureBinding
 import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureAppState
 import ru.kirill.astro_app.viewmodel.marsPicture.MarsPictureViewModel
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -182,8 +184,6 @@ class MarsPictureFragment : Fragment() {
                     Toast.makeText(requireContext(), "SELECT DATE TO SEARCH", Toast.LENGTH_SHORT)
                         .show()
                 }
-            }else {
-                dateDialog("INVALID DATE", "You entered the date when the rovers have not landed on Mars yet")
             }
         }
     }
@@ -330,13 +330,33 @@ class MarsPictureFragment : Fragment() {
         }
     }
 
-    private fun funCheckDate():Boolean {
-        val clone = binding.dateHack.dateMars.text
-        val minDate = clone.take(4).toString()  //removeRange(4..binding.dateHack.dateMars.text.length)
-        val maiDateInt: Int = minDate.toInt()
-        Log.d("@@@", maiDateInt.toString())
-        if(maiDateInt >= 2004) return true
+    //Проверка на соответствие введенного значения минимальному значению года призимления ровера
+    private fun funCheckDate(): Boolean {
+        val clone = binding.dateHack.dateMars.text.toString()
+        if(haveFun(clone)){
+            val minDate =
+                clone.take(4)  //removeRange(4..binding.dateHack.dateMars.text.length)
+            val maiDateInt: Int = minDate.toInt()
+            Log.d("@@@", maiDateInt.toString())
+            if (maiDateInt >= 2004) return true
+            dateDialog("INVALID DATE", "You entered the date when the rovers have not landed on Mars yet")
+            return false
+        }
         return false
+    }
+
+    //Проверка на соответствие введенного значения формату даты
+    fun haveFun(dateStr: String): Boolean {
+        try {
+            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = formatter.parse(dateStr)
+            Log.d("@@@", date!!.toString())
+            return true
+        } catch (ex: ParseException) {
+            Log.d("@@@", ex.toString())
+            dateDialog("INVALID DATE", "You have entered an incorrect date format")
+            return false
+        }
     }
 
     private fun enterDateDialog() {
