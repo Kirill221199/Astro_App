@@ -1,6 +1,7 @@
 package ru.kirill.astro_app.view.mars_picture
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
@@ -14,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import coil.ImageLoader
+import coil.decode.SvgDecoder
 import coil.load
-import coil.network.HttpException
+import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import ru.kirill.astro_app.R
 import ru.kirill.astro_app.databinding.FragmentMarsPictureBinding
@@ -157,22 +160,30 @@ class MarsPictureFragment : Fragment() {
 
     private fun searchPictureToCalendar() {
         binding.searchPicture.setOnClickListener {
-            val rover = getRover()
-            val camera = getCamera()
-            if (binding.dateHack.dateMars.text.toString() != "") {
-                when (rover) {
-                    roverName[0] -> {
-                        initRequestCuriosity(binding.dateHack.dateMars.text.toString(), camera)
+            if (funCheckDate()) {
+                val rover = getRover()
+                val camera = getCamera()
+                if (binding.dateHack.dateMars.text.toString() != "") {
+                    when (rover) {
+                        roverName[0] -> {
+                            initRequestCuriosity(binding.dateHack.dateMars.text.toString(), camera)
+                        }
+                        roverName[1] -> {
+                            initRequestOpportunity(
+                                binding.dateHack.dateMars.text.toString(),
+                                camera
+                            )
+                        }
+                        roverName[2] -> {
+                            initRequestSpirit(binding.dateHack.dateMars.toString(), camera)
+                        }
                     }
-                    roverName[1] -> {
-                        initRequestOpportunity(binding.dateHack.dateMars.text.toString(), camera)
-                    }
-                    roverName[2] -> {
-                        initRequestSpirit(binding.dateHack.dateMars.toString(), camera)
-                    }
+                } else {
+                    Toast.makeText(requireContext(), "SELECT DATE TO SEARCH", Toast.LENGTH_SHORT)
+                        .show()
                 }
-            } else{
-                Toast.makeText(requireContext(),"SELECT DATE TO SEARCH", Toast.LENGTH_SHORT).show()
+            }else {
+                dateDialog("INVALID DATE", "You entered the date when the rovers have not landed on Mars yet")
             }
         }
     }
@@ -213,18 +224,10 @@ class MarsPictureFragment : Fragment() {
                 Log.d("@@@", marsPictureAppState.marsPictureResponseData.photos.size.toString())
                 if (marsPictureAppState.marsPictureResponseData.photos.isNotEmpty()) {
 
-                    val picture = marsPictureAppState.marsPictureResponseData.photos.last().imgSrc
-                    binding.imageViewMars.load(picture){
-                        placeholder(R.drawable.space)
-                        error(R.drawable.ic_baseline_error_outline_24)
-                        listener(
-                            onError = { request, ex ->
-                                if ((ex as HttpException).response.code() == 400) {
-                                    Log.d("", "")
-                                }
-                            })
-                    }
-
+                    val picture =
+                        marsPictureAppState.marsPictureResponseData.photos.first().imgSrc.toString()
+                    Log.d("@@@", picture)
+                    binding.imageViewMars.loadSvg(picture)
                 } else {
                     binding.imageViewMars.load(R.drawable.mars) {
                         transformations(CircleCropTransformation())
@@ -232,6 +235,19 @@ class MarsPictureFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun ImageView.loadSvg(url: String) {
+        val imageLoader = ImageLoader.Builder(requireContext()).componentRegistry {
+            add(SvgDecoder(this@loadSvg.context))
+        }.build()
+        val request = ImageRequest.Builder(requireContext())
+            .placeholder(R.drawable.space)
+            .error(R.drawable.ic_baseline_error_outline_24)
+            .data(url)
+            .target(this)
+            .build()
+        imageLoader.enqueue(request)
     }
 
     //region Spinner and and their adapters
@@ -287,6 +303,7 @@ class MarsPictureFragment : Fragment() {
     private fun choiceDateCalendar() {
         binding.dateHack.dateMars.text = getDate()
         binding.dateHack.dateMars.setOnClickListener {
+            val calMin = GregorianCalendar(2004, Calendar.JANUARY, 1)
             val calendar = Calendar.getInstance()
             val yy = calendar[Calendar.YEAR]
             val mm = calendar[Calendar.MONTH]
@@ -301,18 +318,28 @@ class MarsPictureFragment : Fragment() {
                     setDate(date)
                 }, yy, mm, dd
             )
+            datePicker.datePicker.minDate = calMin.timeInMillis
             datePicker.show()
         }
     }
 
     private fun choiceDateText() {
         binding.dateHack.dateMars.setOnLongClickListener {
-            showDialog()
+            enterDateDialog()
             return@setOnLongClickListener true
         }
     }
 
-    private fun showDialog() {
+    private fun funCheckDate():Boolean {
+        val clone = binding.dateHack.dateMars.text
+        val minDate = clone.take(4).toString()  //removeRange(4..binding.dateHack.dateMars.text.length)
+        val maiDateInt: Int = minDate.toInt()
+        Log.d("@@@", maiDateInt.toString())
+        if(maiDateInt >= 2004) return true
+        return false
+    }
+
+    private fun enterDateDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
@@ -328,6 +355,15 @@ class MarsPictureFragment : Fragment() {
         }
         noBtn.setOnClickListener { dialog.dismiss() }
         dialog.show()
+
+    }
+
+    private fun dateDialog(title: String, message: String){
+        AlertDialog.Builder(requireContext())
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton("Ok") { dialog, which -> dialog.dismiss()}
+            .show()
 
     }
 
