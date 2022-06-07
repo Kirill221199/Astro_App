@@ -32,14 +32,21 @@
     <string name="confirm_date_dialog">confirm</string>
     <string name="cancel_date_dialog">cancel</string>
     <string name="photo_from_mars">Photo from Mars</string>
-    <string name="help_text">В данном разделе Вы можете посмотреть фотографии которые сделали марсоходы за время своих миссий:</string>
-    <string name="help_curiosity">Curiosity – выполняет свой долг по сей день и отправляет фотографии на землю</string>
-    <string name="help_opportunity">Opportunity – 12 июня 2018 года перестал выходить на связь из-за мощной пылевой бури</string>
-    <string name="help_spirit">Spirit – в мае 2009 года застрял в песчаной дюне, вследствие чего 22 марта 2010 года потерял связь с Землёй </string>
-    <string name="help_instruction">Здесь вы можете посмотреть фото с марсохода, для этого нужно выбрать модель марсохода, его камеру с которой были сделаны фото, а также земную дату когда пришли фото. Выбор даты происходит в календаре по короткому нажатию, или в текстовой строке по удержанию, после чего нажать search.</string>
-    <string name="help_warning">Если отобразилось фото марса – значит в этот день или с этой камеры не было сделано фото.</string>
-    <string name="help_link">Для того чтобы посмотреть какие камеры стоят на каком марсоходе перейдите по ссылке -> Browse APIs -> Mars Rover Photos ->Rover Cameras </string>
-    <string name="scroll">↓ SCROLL ↓</string>
+    <string name="help_text">
+        "In this section you can see the photos that the rovers took during their missions:\n\n"
+        "Curiosity – fulfills his duty to this day and sends photos to earth.\n\n"
+        "Opportunity – on June 12, 2018, he stopped communicating due to a powerful dust storm. \n\n"
+        "Spirit – in May 2009, he got stuck in a sand dune, as a result of which he lost contact with the Earth on March 22, 2010. \n\n"
+        "Here you can view photos from the rover, for this you need to choose the model of the rover, its camera from which the photos were taken, as well as the earth date when the photos came. The date is selected in the calendar by short pressing, or in the text line by holding, and then press search.\n\n"
+        "If a photo of Mars is displayed, it means that no photo was taken on this day or from this camera. \n\n"
+        "To see which cameras are on which rover, follow the <a href="https://api.nasa.gov/index.html#browseAPI">link</a> -> Browse APIs -> Mars Rover Photos ->Rover Cameras\n\nEnjoy using the app!"
+
+    </string>
+    <string name="help_description">
+        "Dear User,\nHere you will find answers on how to use the section to search for photos from rovers"
+    </string>
+    <string name="help_manual">MANUAL</string>
+    <string name="nasa">NASA</string>
 
     <string-array name="RoverNames">
         <item>Curiosity</item>

@@ -1,114 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorPrimaryVariant"
-    tools:context=".view.earth_picture.EarthPictureFragment">
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <TextView
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="center|top"
-            android:text="@string/scroll"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_text"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/help_description"
+                android:textColor="?android:textColor"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_curiosity"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/help_manual" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_opportunity"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_spirit"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+    <include android:id = "@+id/nested" layout="@layout/help_nested" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_instruction"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_nasa_api"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:backgroundTint="?colorSecondary"
+        android:text="@string/nasa"
+        android:textSize="20sp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior=".view.mars_picture.ButtonBehavior" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_warning"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_help"
-            android:layout_marginBottom="@dimen/margin_help"
-            android:gravity="start|top"
-            android:text="@string/help_link"
-            android:textColor="?android:textColor"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:text="ССЫЛКА"
-            android:textColor="?android:textColor"
-            android:textSize="30sp" />
-    </LinearLayout>
-
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

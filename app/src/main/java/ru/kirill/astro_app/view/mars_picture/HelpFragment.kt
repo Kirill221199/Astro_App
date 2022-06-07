@@ -3,6 +3,7 @@ package ru.kirill.astro_app.view.mars_picture
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,11 +34,12 @@ class HelpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.nested.helpText.setMovementMethod(LinkMovementMethod.getInstance())
         tapLink()
     }
 
     private fun tapLink(){
-        binding.link.setOnClickListener {
+        binding.buttonNasaApi.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
                     Uri.parse("https://api.nasa.gov/index.html#browseAPI")
