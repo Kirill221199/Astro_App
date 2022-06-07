@@ -16,6 +16,7 @@
         <item name="floatingActionButtonStyle">@style/MyStyleFloatingActionButton</item>
         <item name="android:navigationBarColor">?colorPrimaryVariant</item>
         <item name="fontFamily">?superFont</item>
+        <item name="android:textColorPrimary">?colorPrimary</item>
     </style>
 
     <style name="MyStyleFloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
